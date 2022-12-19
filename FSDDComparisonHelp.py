@@ -35,7 +35,7 @@ class FSDD:
 def getMFCC(soundfile, useStd=False):
 	y, sr = librosa.load(soundfile)
 	# n_fft = 2048 by default hop_length=512
-	mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=80, dct_type=3, n_fft=4096, hop_length=512)
+	mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=12, dct_type=3, n_fft=4096, hop_length=512)
 	if useStd: mfccs = sklearn.preprocessing.scale(mfccs, axis=1)
 	return mfccs, sr
 
@@ -61,7 +61,7 @@ def showMFCC(soundfile):
 	ax[0].set(title='Mel spectrogram')
 	ax[0].label_outer()
 
-	mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=80, dct_type=3)
+	mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=12, dct_type=3)
 	img = librosa.display.specshow(mfccs, x_axis='time', ax=ax[1])
 
 	fig.colorbar(img, ax=[ax[1]])
